@@ -27,9 +27,6 @@ Create a role in "roles/nutch.rb":
     )
 
     override_attributes(
-      "java" => {
-        "install_flavor" => "oracle"
-      },
       "cloudera" => {
         "installyarn" => false
       }
@@ -38,7 +35,7 @@ Create a role in "roles/nutch.rb":
 
     # todo - replace basic by aoe common recipe
     run_list(
-        "recipe[java]",
+        "recipe[java::oracle]",
         "recipe[cloudera]",
         "recipe[cloudera::hbase]"
         "recipe[nutch21]"
@@ -71,7 +68,7 @@ Requirements
 Cookbooks
 --------
 java cookbook: https://github.com/opscode-cookbooks/java
-cloudera cookbook: git://github.com/danielpoe/cloudera.git
+cloudera cookbook: https://github.com/danielpoe/cloudera
 
 
 Platform
