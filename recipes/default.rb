@@ -1,14 +1,5 @@
 #Installs nutch 2.1 according to http://wiki.apache.org/nutch/Nutch2Tutorial
 
-if node[:platform] == "ubuntu"
-    execute "apt-get update"
-end
-
-package "ant" do
-    action :install
-end
-
-
 # Prepare config files
 cookbook_file "/tmp/gora.properties" do
     source "gora.properties"
