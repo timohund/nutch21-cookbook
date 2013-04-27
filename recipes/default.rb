@@ -32,6 +32,8 @@ bash "install_nutch" do
     cp /tmp/gora.properties ./conf/gora.properties
     cp /tmp/ivy.xml ./ivy/ivy.xml
     ant runtime
+    cp -r /tmp/apache-nutch-2.1 /opt/nutch
+    chmod g+s -R /opt/nutch/
   EOH
   action :nothing
 end
