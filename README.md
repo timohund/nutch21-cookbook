@@ -11,7 +11,6 @@ Cookbooks
 How to use
 ===========================
 
-
 Create a role in "roles/nutch.rb":
 
 	name "nutch21"
@@ -28,6 +27,7 @@ Create a role in "roles/nutch.rb":
 
 	override_attributes(
 	  "cloudera" => {
+		"version" => 3,
 		"installyarn" => false
 	  },
 	  "java" => {
@@ -39,6 +39,7 @@ Create a role in "roles/nutch.rb":
 	)
 
 	run_list(
+		"recipe[apt]",
 		"recipe[java]",
 		"recipe[ant]",
 		"recipe[cloudera]",
