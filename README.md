@@ -49,10 +49,10 @@ Create a role in "roles/nutch.rb":
 I've used the following Cheffile:
 
 
-#!/usr/bin/env ruby
-#^syntax detection
+	#!/usr/bin/env ruby
+	#^syntax detection
 
-site 'http://community.opscode.com/api/v1'
+	site 'http://community.opscode.com/api/v1'
 
 	cookbook "apt"
 	cookbook "java", "1.6.0"
@@ -63,29 +63,30 @@ site 'http://community.opscode.com/api/v1'
 	cookbook "hosts"
 	cookbook "openssh"
 	cookbook "openssl"
-	cookbook "cloudera", :git => "git://github.com/danielpoe/cloudera.git"
+	cookbook "cloudera", :git => "git://github.com/timoschmidt/cloudera.git"
 	cookbook "nutch21", :git => "git://github.com/timoschmidt/nutch21-cookbook.git"
 
 
-Create a Vagrant file:
+
+Create a Vagrant file (nutch currently not works with hbase 0.94 thats why we use cloudera 3 and lucid32):
 
     # -*- mode: ruby -*-
     # vi: set ft=ruby :
     Vagrant::Config.run do |config|
-        config.vm.box = "precise64"
-
-        config.vm.box_url = "http://files.vagrantup.com/precise64.box"
+        config.vm.box = "lucid32"
+        config.vm.box_url = "http://files.vagrantup.com/lucid32.box"
         config.vm.network :hostonly, "192.168.33.10"
 
         config.vm.provision :chef_solo do |chef|
            chef.cookbooks_path = "cookbooks"
            chef.roles_path = "roles"
-           chef.add_role "nutch21"
+           chef.add_role "nutch"
          end
 
       #   chef.validation_client_name = "ORGNAME-validator"
-      config.vm.customize ["modifyvm", :id,"--memory", "2048"]
+      config.vm.customize ["modifyvm", :id,"--memory", "4096"]
     end
+
 
 Requirements
 ============
@@ -93,7 +94,7 @@ Requirements
 Cookbooks
 --------
 java cookbook: https://github.com/opscode-cookbooks/java
-cloudera cookbook: https://github.com/danielpoe/cloudera
+cloudera cookbook: https://github.com/timoschmidt/cloudera (https://github.com/danielpoe/cloudera)
 
 
 Platform

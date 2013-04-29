@@ -34,6 +34,9 @@ bash "install_nutch" do
     ant runtime
     cp -r /tmp/apache-nutch-2.1 /opt/nutch
     chmod g+s -R /opt/nutch/
+    #replace the delivered hbase libs with hbase 0.94 libs from cloudera
+   # rm /opt/nutch/runtime/local/lib/hbase*
+   # cp /usr/lib/hbase/hbase.jar /opt/nutch/runtime/local/lib/
   EOH
   action :nothing
 end
