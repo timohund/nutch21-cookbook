@@ -32,8 +32,21 @@ bash "install_nutch" do
     cp /tmp/gora.properties ./conf/gora.properties
     cp /tmp/ivy.xml ./ivy/ivy.xml
     ant runtime
+    #copy to /opt/nutch
     cp -r /tmp/apache-nutch-2.1 /opt/nutch
     chmod g+s -R /opt/nutch/
+    #create log folder
+    mkdir -p /opt/nutch/runtime/local/logs/
+    #symlink nutch binaries in /usr/local/bin
+    ln -s /opt/nutch/runtime/local/bin/nutch /usr/local/bin/nutch
+
+    #prepare example
+    mkdir -p /home/vagrant/urls
+    touch /home/vagrant/urls/seed.txt
   EOH
   action :nothing
+end
+
+package "hadoop-0.20-conf-pseudo" do
+   action :install
 end

@@ -14,7 +14,7 @@ How to use
 Create a role in "roles/nutch.rb":
 
 	name "nutch21"
-	description "Installs nutch 2.1 with all dependencies on cloudera 4"
+	description "Installs nutch 2.1 with all dependencies on cloudera 3"
 
 	default_attributes(
 	  :java => {
@@ -39,6 +39,7 @@ Create a role in "roles/nutch.rb":
 	)
 
 	run_list(
+		"recipe[hosts]",
 		"recipe[apt]",
 		"recipe[java]",
 		"recipe[ant]",
@@ -77,7 +78,7 @@ Create a Vagrant file (nutch currently not works with hbase 0.94 thats why we us
         config.vm.box = "lucid32"
         config.vm.box_url = "http://files.vagrantup.com/lucid32.box"
         config.vm.network :hostonly, "192.168.33.10"
-
+		config.vm.host_name = "localhost"
         config.vm.provision :chef_solo do |chef|
            chef.cookbooks_path = "cookbooks"
            chef.roles_path = "roles"
