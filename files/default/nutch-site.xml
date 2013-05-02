@@ -9,4 +9,8 @@
         <value>org.apache.gora.hbase.store.HBaseStore</value>
         <description>Default class for storing data</description>
     </property>
+    <property>
+        <name>http.agent.name</name>
+        <value>Nutch 2.1</value>
+    </property>
 </configuration>
