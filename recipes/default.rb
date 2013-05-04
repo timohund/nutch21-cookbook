@@ -37,8 +37,9 @@ bash "install_nutch" do
     chmod g+s -R /opt/nutch/
     #create log folder
     mkdir -p /opt/nutch/runtime/local/logs/
+    chmod 777 /opt/nutch/runtime/local/logs/
     #symlink nutch binaries in /usr/local/bin
-    ln -s /opt/nutch/runtime/local/bin/nutch /usr/local/bin/nutch
+    ln -s /opt/nutch/runtime/local/bin/nutch /usr/deploy/bin/nutch
 
     #prepare example
     mkdir -p /home/vagrant/urls
